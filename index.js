@@ -30,13 +30,29 @@ function startStreaming() {
     "-i", "color=size=1280x720:rate=30:color=#001F3F",
     "-f", "lavfi",
     "-i", "anullsrc=channel_layout=stereo:sample_rate=44100",
-    "-vf",
-    \`drawtext=
-      fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf:
-      fontsize=120:
-      fontcolor=gold:
-      text='%{eif\\:floor((${duration}-t)/3600)\\:d\\:2}\\:%{eif\\:floor(mod((${duration}-t)\\,3600)/60)\\:d\\:2}\\:%{eif\\:mod(mod((${duration}-t)\\,3600)\\,60)\\:d\\:2}':
-      x=(w-tw)/2:y=(h/2)-100,
+"-vf",
+"drawtext= \
+  fontfile=/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf: \
+  fontsize=120: \
+  fontcolor=gold: \
+  text='%{eif\\:floor((${duration}-t)/3600)\\:d\\:2}\\:%{eif\\:floor(mod((${duration}-t)\\,3600)/60)\\:d\\:2}\\:%{eif\\:mod(mod((${duration}-t)\\,3600)\\,60)\\:d\\:2}': \
+  x=(w-tw)/2:y=(h/2)-100, \
+ drawtext= \
+  fontsize=40: \
+  text='LIVE': \
+  x=30:y=30: \
+  fontcolor=white: \
+  box=1:boxcolor=red@0.8, \
+ drawtext= \
+  fontsize=30: \
+  text='Parwarish Episode 27': \
+  x=30:y=80: \
+  fontcolor=white, \
+ drawtext= \
+  fontsize=52: \
+  text='Parwarish Episode 27 | Aina Asif Samar Jafri | 8 July 2025 (Eng Sub) | ARY Digital Drama': \
+  x=w-mod(t*50\\,w+tw):y=h-50: \
+  fontcolor=white"
      
      drawtext=
       fontsize=40:
